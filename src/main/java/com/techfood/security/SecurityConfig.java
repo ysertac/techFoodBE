@@ -1,6 +1,8 @@
 package com.techfood.security;
 
+import com.techfood.utils.RsaKeyProperty;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +23,14 @@ import java.util.List;
 @Data
 @Configuration
 public class SecurityConfig {
+
+    private final RsaKeyProperty keys;
+
+    @Autowired
+    public SecurityConfig(RsaKeyProperty keys) {
+        this.keys = keys;
+    }
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();
