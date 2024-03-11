@@ -19,7 +19,7 @@ public class FoodController {
     }
 
     @GetMapping
-    public List<Food> getAllFood() {
+    public List<Food> getAllFoods() {
         return foodService.findAll();
     }
 
