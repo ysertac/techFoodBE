@@ -88,9 +88,8 @@ public class SecurityConfig {
         httpSecurity.cors().configurationSource(corsConfigurationSource());
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-
-                    //auth.requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/webjars/**", "/swagger-resources/**").permitAll();
-
+                    auth.requestMatchers("/food/**").authenticated();
+                    auth.requestMatchers("/extra/**").authenticated();
                     auth.requestMatchers(HttpMethod.GET,"/food/**").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/extra/**").permitAll();
 
