@@ -2,6 +2,7 @@ package com.techfood.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -33,8 +34,14 @@ public class SecurityConfig {
         return httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth/**").permitAll();
-                    auth.requestMatchers("/extra/**").hasAuthority("ADMIN");
-                    auth.requestMatchers("/food/**").hasAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.GET, "/extra/**").hasAnyAuthority("USER", "ADMIN");
+                    auth.requestMatchers(HttpMethod.POST, "/extra/**").hasAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.PUT, "/extra/**").hasAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.DELETE, "/extra/**").hasAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.GET, "/food/**").hasAnyAuthority("USER", "ADMIN");
+                    auth.requestMatchers(HttpMethod.POST, "/food/**").hasAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.PUT, "/food/**").hasAuthority("ADMIN");
+                    auth.requestMatchers(HttpMethod.DELETE, "/food/**").hasAuthority("ADMIN");
                     auth.anyRequest().authenticated();
                 })
                 .httpBasic(Customizer.withDefaults())
