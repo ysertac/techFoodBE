@@ -26,4 +26,5 @@ public class AuthController {
         return authenticationService
                 .register(registerUser.username(), registerUser.password());
     }
+    //
 }
