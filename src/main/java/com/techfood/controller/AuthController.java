@@ -15,6 +15,11 @@ public class AuthController {
         this.authenticationService = authenticationService;
     }
 
+    @GetMapping("/welcome")
+    public String welcome() {
+        return "User login is successful, you are being redirected.";
+    }
+
     @PostMapping("/register")
     public User register(@RequestBody RegisterUser registerUser) {
         return authenticationService
