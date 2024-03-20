@@ -5,7 +5,6 @@ import com.techfood.entity.User;
 import com.techfood.service.AuthenticationService;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -14,11 +13,6 @@ public class AuthController {
 
     public AuthController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
-    }
-
-    @GetMapping("/welcome")
-    public String welcome() {
-        return "wlecome";
     }
 
     @PostMapping("/register")
