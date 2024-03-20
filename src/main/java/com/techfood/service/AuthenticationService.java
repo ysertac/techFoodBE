@@ -40,4 +40,5 @@ public class AuthenticationService {
 
         return userRepository.save(user);
     }
+
 }
