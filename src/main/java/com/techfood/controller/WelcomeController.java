@@ -1,5 +1,6 @@
 package com.techfood.controller;
 
+import com.techfood.dto.WelcomeDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class WelcomeController {
 
     @GetMapping
-    public String welcome() {
-        return "User login is successful, you are being redirected.";
+    public WelcomeDto welcome() {
+        return new WelcomeDto("User login is successful, you are being redirected.");
     }
 
 }
